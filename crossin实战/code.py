@@ -25,6 +25,7 @@ class index:
 
 class movie:
     def GET(self, movie_id):
+
         movie_id = int(movie_id)
         movie = db.select('movie', where='id=$movie_id',vars=locals())[0]
         return r.movie(movie)

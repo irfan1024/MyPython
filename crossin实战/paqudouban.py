@@ -20,7 +20,7 @@ db = web.database(dbn='sqlite', db='MovieSite.db')
 
 def add_movie(data):
     movie = json.loads(data)
-    print(movie['title'])
+    print(movie['title'], movie['id'])
     db.insert('movie',
         id=int(movie['id']),
         title=movie['title'],
@@ -40,9 +40,8 @@ def add_movie(data):
 count = 0
 for mid in movie_ids:
     print(count, mid)
-    response = urllib.urlopen('http://api.douban.com/v2/movie/subject/%s' % mid)
+    response = urllib.request.urlopen('http://api.douban.com/v2/movie/subject/%s' % mid)
     data = response.read()
     add_movie(data)
     count += 1
     time.sleep(2)
-
