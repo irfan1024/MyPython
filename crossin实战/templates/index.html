@@ -1,0 +1,15 @@
+$def with (movies)
+$# -*- coding: UTF-8 -*-
+
+<h4>欢迎来到</h4>
+<h1>cyf`s movie site</h1>
+<hr>
+<form class="" action="/" method="post">
+    <input type="text" name="title">
+    <input type="submit" value="搜索">
+</form>
+<p>电影列表:</p>
+$for movie in movies:
+    <li>
+        <a href="movie/$movie['id']">$movie['title']</a>
+    </li>
