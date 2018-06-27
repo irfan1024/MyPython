@@ -4,14 +4,14 @@ import time
 import web
 
 movie_ids = []
-for index in range(0, 250, 50):
+for index in range(0, 100, 50):
     response = urllib.request.urlopen('http://api.douban.com/v2/movie/top250?start=%d&count=50' % index)#这里太坑了，urllib在python3中，之前的urllib.urlopen这个方法已经没有了！
     data = response.read()
     data_json = json.loads(data)
 
-movie250 = data_json['subjects']
+movie100 = data_json['subjects']
 
-for movie in movie250:
+for movie in movie100:
     movie_ids.append(movie['id'])
     print(movie['id'], movie['title'])
 time.sleep(2)

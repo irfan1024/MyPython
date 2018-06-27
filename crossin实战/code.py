@@ -6,6 +6,7 @@ import web
 urls = (
     '/','index',
     '/movie/(\d+)','movie',
+    '/cast/(.*)','cast',
 )
 
 r = web.template.render('templates/')
@@ -19,8 +20,10 @@ class index:
 
     def POST(self):
         data = web.input()
+        print('data',type(data))
         condition = r'title like "%' + data.title + r'%"'
         movies = db.select('movie',  where=condition)
+        print('movies',movies)
         return r.index(movies)
 
 class movie:
@@ -30,6 +33,13 @@ class movie:
         movie = db.select('movie', where='id=$movie_id',vars=locals())[0]
         return r.movie(movie)
 
+class cast:
+    def GET(self, cast_name):
+        print('cast_name',cast_name)
+        condition = r'casts like "%' + cast_name + r'%"'
+        movies = db.select('movie', where=condition)
+        print(movies)
+        return r.index(movies)
 
 
 
