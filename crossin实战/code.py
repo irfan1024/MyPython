@@ -1,7 +1,10 @@
-#!/usr/bin/env python
-# encoding: utf-8
+#!/usr/bin/env python3
+# _*_ coding:utf-8 _*_
 
 import web
+# import sys
+#
+# print(sys.getdefaultencoding()) 测试系统用什么解码
 
 urls = (
     '/','index',
@@ -34,7 +37,6 @@ class movie:
 
 class cast:
     def GET(self, cast_name):
-        print(cast_name)
         condition = r'casts like "%' + cast_name + r'%"'
         movies = db.select('movie', where=condition)
         return r.index(movies)
