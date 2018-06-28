@@ -1,0 +1,11 @@
+ satatement = 'SELECT COUNT(*) AS COUNT FROM movie WHERE ' + condition
+ result = db.query(satatement)
+ data1 = resule[0]
+ count = data1['COUNT']
+
+ count = db.query('SELECT COUNT(*) AS COUNT FROM movie WHERE ' + condition)[0]['COUNT']
+ 获取数量的 SQL 语句是：
+ SELECT COUNT(*) FROM 数据库 WHERE 查询条件;
+ web.py 提供了接口：
+ db.query('SQL语句')
+ 用来获取数据库查询指定 SQL 语句的结果。

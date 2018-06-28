@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*-encoding:utf-8-*-
+# encoding: utf-8
 
 import web
 
@@ -20,12 +20,11 @@ class index:
 
     def POST(self):
         data = web.input()
-        print('data',type(data))
         condition = r'title like "%' + data.title + r'%"'
         movies = db.select('movie',  where=condition)
-        print('movies',movies)
-        return r.index(movies)
-
+        count = db.query('SELECT COUNT(*) AS COUNT FROM movie WHERE ' + condition)[0]['COUNT']
+        print(count)
+        return r.haha(movies, count)
 class movie:
     def GET(self, movie_id):
 
@@ -35,10 +34,9 @@ class movie:
 
 class cast:
     def GET(self, cast_name):
-        print('cast_name',cast_name)
+        print(cast_name)
         condition = r'casts like "%' + cast_name + r'%"'
         movies = db.select('movie', where=condition)
-        print(movies)
         return r.index(movies)
 
 

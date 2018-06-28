@@ -1,0 +1,8 @@
+$def with (movies, count)
+<h4><a href="/">返回首页</a></h4>
+<p>$count</p>
+<p>影片列表:</p>
+$for movie in movies:
+    <li>
+        <a href="/movie/$movie['id']">$movie['title']</a>
+    </li>
